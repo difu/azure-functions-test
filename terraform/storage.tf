@@ -7,7 +7,22 @@ resource "azurerm_storage_account" "storageacct" {
 }
 
 resource "azurerm_storage_container" "container" {
-  name                  = "my-container"
-  storage_account_name  = azurerm_storage_account.storageacct.name
+  name                  = "uploadedblobs"
+  storage_account_id    = azurerm_storage_account.storageacct.id
   container_access_type = "private"
+}
+
+resource "azurerm_storage_container" "function_code" {
+  name                  = "function-code"
+  storage_account_id    = azurerm_storage_account.storageacct.id
+  container_access_type = "private"
+}
+
+# Storage Blob Trigger Function Code Deployment
+resource "azurerm_storage_blob" "function_code_blob" {
+  name                   = "function.zip"
+  storage_account_name   = azurerm_storage_account.storageacct.name
+  storage_container_name = azurerm_storage_container.function_code.name
+  type                   = "Block"
+  source                 = "${path.module}/function_code.zip"
 }
