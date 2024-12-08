@@ -13,44 +13,58 @@ This project aims to provision a test environment for Azure Functions using Terr
 - Ensure seamless integration with Azure services like Storage Accounts and Service Plans.
 - Demonstrate infrastructure as code (IaC) best practices with Terraform.
 
+[#_first_steps]
 == First Steps
 
-1. **Clone the Repository:**
+=== **Clone the Repository:**
 
    Clone this repository to your local machine using the command:
 
-   ```bash
-   git clone <repository_url>
-   ```
+```bash
+git clone <repository_url>
+```
 
-2. **Configure Azure Provider:**
+=== **Configure Azure Provider:**
 
    Ensure you have configured your local environment with Azure CLI and Terraform. Set up the Azure provider by setting your subscription ID in the `variables.tf` file:
 
-   ```terraform
-   variable "subscription_id" {
-     description = "The subscription ID for the Azure provider"
-     type        = string
-   }
-   ```
+```terraform
+variable "subscription_id" {
+ description = "The subscription ID for the Azure provider"
+ type        = string
+}
+```
 
-3. **Initiate Terraform:**
+=== **Initiate Terraform:**
 
    Within the project directory, initialize Terraform to install the necessary provider plugins:
 
-   ```bash
-   terraform init
-   ```
+```bash
+terraform init
+```
 
-4. **Apply Terraform Configuration:**
+=== **Build Function deployment package**
+
+    Currently, this step is not automated.
+
+```bash
+cd function/BlobTrigger
+zip -r ../../terraform/function_code.zip .
+```
+
+=== **Apply Terraform Configuration:**
 
    Apply the configuration to create the Azure resources:
 
-   ```bash
-   terraform apply
-   ```
+```bash
+terraform apply
+```
 
    Confirm the plan to provision the resources.
+
+=== Watch the results
+
+When you upload a blob to the __uploadedblobs__ container, you will see invocations of the __BlobTrigger__ function.
 
 == Documentation
 
