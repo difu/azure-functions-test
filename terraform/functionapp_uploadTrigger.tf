@@ -54,7 +54,7 @@ resource "azurerm_function_app" "linuxfunction" {
   version                    = "~4"
   app_settings = {
     "AzureWebJobsStorage"      = azurerm_storage_account.storageacct.primary_connection_string
-    "WEBSITE_RUN_FROM_PACKAGE" = "https://${azurerm_storage_account.storageacct.name}.blob.core.windows.net/function-upload-code/${azurerm_storage_blob.function_upload_trigger_code_blob.name}"
+    "WEBSITE_RUN_FROM_PACKAGE" = "https://${azurerm_storage_account.storageacct.name}.blob.core.windows.net/${azurerm_storage_container.function_upload_code.name}/${azurerm_storage_blob.function_upload_trigger_code_blob.name}"
     "FUNCTIONS_WORKER_RUNTIME" = "python"
     "APPINSIGHTS_INSTRUMENTATIONKEY" = azurerm_application_insights.ai_function_app.instrumentation_key
 
