@@ -1,3 +1,12 @@
+# Storage Blob Trigger Function Code Deployment
+resource "azurerm_storage_blob" "function_upload_trigger_code_blob" {
+  name                   = "function_upload_trigger.zip"
+  storage_account_name   = azurerm_storage_account.storageacct.name
+  storage_container_name = azurerm_storage_container.function_upload_code.name
+  type                   = "Block"
+  source                 = "${path.module}/function_code.zip"
+}
+
 resource "azurerm_function_app" "linuxfunction" {
   name = "linuxfunctionapp-difu"
   resource_group_name = azurerm_resource_group.functiontest.name
