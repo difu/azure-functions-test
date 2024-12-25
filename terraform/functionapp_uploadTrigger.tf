@@ -37,8 +37,8 @@ resource "azurerm_storage_blob" "function_upload_trigger_code_blob" {
   source                 = var.output_zip_uploadTrigger
 }
 
-resource "azurerm_function_app" "linuxfunction" {
-  name = "linuxfunctionapp-difu"
+resource "azurerm_function_app" "linuxfunction_upload_trigger" {
+  name = "linuxfunctionapp-uploadTrigger"
   resource_group_name = azurerm_resource_group.functiontest.name
   location = azurerm_resource_group.functiontest.location
   storage_account_name = azurerm_storage_account.storageacct.name
