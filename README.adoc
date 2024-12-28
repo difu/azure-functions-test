@@ -48,7 +48,7 @@ terraform init
     Currently, this step is not automated.
 
 ```bash
-cd function/BlobTrigger
+cd function/BlobUploadTrigger
 zip -r ../../terraform/function_code.zip .
 ```
 

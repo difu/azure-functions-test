@@ -1,5 +1,5 @@
 variable "source_dir_uploadTrigger" {
-  default = "../function/BlobTrigger/"
+  default = "../function/BlobUploadTrigger/"
 }
 
 variable "output_zip_uploadTrigger" {
