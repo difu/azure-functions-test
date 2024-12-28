@@ -44,6 +44,7 @@ resource "azurerm_function_app" "linuxfunction_upload_trigger" {
   storage_account_name = azurerm_storage_account.storageacct.name
   storage_account_access_key = azurerm_storage_account.storageacct.primary_access_key
   app_service_plan_id = azurerm_service_plan.serviceplan.id
+  os_type = "linux"
   site_config {
     linux_fx_version = "python|3.9"
   }
@@ -59,6 +60,7 @@ resource "azurerm_function_app" "linuxfunction_upload_trigger" {
     "APPINSIGHTS_INSTRUMENTATIONKEY" = azurerm_application_insights.ai_function_app.instrumentation_key
 
   }
+  depends_on = [azurerm_application_insights.ai_function_app]
 }
 
 resource "azurerm_application_insights" "ai_function_app" {
